@@ -1,0 +1,24 @@
+# rcov generated
+coverage
+
+# rdoc generated
+rdoc
+
+# yard generated
+doc
+.yardoc
+
+# bundler
+.bundle
+
+# jeweler generated
+pkg
+
+
+.DS_Store
+
+# For vim:
+*.swp
+
+# project specific
+config/config.yml
