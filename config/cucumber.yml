@@ -1,0 +1,11 @@
+<%
+rerun = File.file?('rerun.txt') ? IO.read('rerun.txt') : ""
+rerun_opts = rerun.to_s.strip.empty? ? "--format #{ENV['CUCUMBER_FORMAT'] || 'progress'} features" : "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun}"
+std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} --strict --tags ~@wip"
+%>
+# CUCUMBER=true sets a env variable that we used to differentiate between test and cucumber environments.
+# This is particularly useful when we want to not loop in test be do in cucumber.
+default: CUCUMBER=true <%= std_opts %> features
+wip: CUCUMBER=true --tags @wip:10 --wip features
+rerun: CUCUMBER=true <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
+guard: CUCUMBER=true --format progress

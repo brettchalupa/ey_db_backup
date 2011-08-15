@@ -1,0 +1,5 @@
+access_key_id: "put your access key id here"
+secret_access_key: "put your secret access key here"
+bucket_name: "put the bucket name here"
+export_path: "put the location you want to export the file to here (e.g. documents/db_exports/)"
+
