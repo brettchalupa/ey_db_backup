@@ -3,10 +3,24 @@ require 'thor'
 
 class DatabaseExport < Thor
   include Thor::Actions
-
-  def run_export(bucket_name, export_path)
-    bucket_files = AWS::S3::Bucket.objects('bc_images')
+  
+  desc "run_export", "Exports EY database backup to local machine"
+  def run_export
     
+    aws_config = AWSConfiguration.new
+    aws_config.read_from_yaml
+    
+    AWS::S3::Base.establish_connection!(
+      :access_key_id     => aws_config.access_key_id ,
+      :secret_access_key => aws_config.secret_access_key
+    )
+
+    bucket_name = aws_config.bucket_name
+    export_path = aws_config.export_path
+
+    bucket_files = AWS::S3::Bucket.objects(bucket_name)
+    
+
     most_recent = bucket_files[0]
 
     bucket_files.each do |n|
@@ -20,4 +34,6 @@ class DatabaseExport < Thor
     end
   end
 end
+
+DatabaseExport.start
 

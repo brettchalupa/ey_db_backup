@@ -1,14 +1,7 @@
 #!/usr/bin/env ruby
 $:.unshift(File.expand_path('../../lib', __FILE__))
-require 'aws/s3'
+require 'ey_db_backup'
 
 begin
-  @aws_config = AWSConfiguration.new
-  @aws_config.read_from_yaml
-  AWS::S3::Base.establish_connection!(
-    :access_key_id     => @aws_config.access_key_id ,
-    :secret_access_key => @aws_config.secret_access_key
-  )
-
-  DatabaseExport.new.run_export(@aws_config.bucket_name, @aws_config.export_path)
+  DatabaseExport.start
 end
