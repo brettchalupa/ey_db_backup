@@ -5,7 +5,7 @@ This gem downloads the latest file in the bucket you specify in your AWS S3 acco
 This backup utility is to make sure there is a recent backup of the database incase Amazon's S3 service goes down and you need access to your data.
 
 == Setting up and using the Engine Yard Database Backup gem
-1. <tt>gem install ey_db_export</tt>
+1. <tt>gem install ey_db_backup</tt>
 2. Create the directory <tt>config</tt> within the local directory you are running the gem in.
 3. Create a YAML file <tt>config.yml</tt> structured as below:
   <tt>
