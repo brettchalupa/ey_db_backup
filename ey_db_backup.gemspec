@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ey_db_backup}
-  s.version = "0.3.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brett Chalupa"]
-  s.date = %q{2011-08-15}
+  s.date = %q{2011-08-17}
   s.default_executable = %q{ey_db_backup}
   s.description = %q{This gem interacts with Amazon's S3 service to give the user the ability to backup their database and store it elsewhere in case S3 experiences an outage. This gem should allow the user to easily automate the process of grabbing the most recent database from S3.}
   s.email = %q{brettchalupa@gmail.com}
@@ -29,12 +29,15 @@ Gem::Specification.new do |s|
     "bin/ey_db_backup",
     "config/.DS_Store",
     "config/cucumber.yml",
-    "ey_db_import.gemspec",
+    "ey_db_backup.gemspec",
     "features/.DS_Store",
     "features/export.feature",
     "features/step_definitions/.DS_Store",
     "features/step_definitions/db_export_steps.rb",
     "features/support/env.rb",
+    "lib/ey_db_backup.rb",
+    "lib/ey_db_backup/aws_configuration.rb",
+    "lib/ey_db_backup/database_export.rb",
     "most_recent_backup",
     "most_recent_file",
     "pkg/Engine Yard Database Import-0.1.0.gem",
@@ -44,6 +47,7 @@ Gem::Specification.new do |s|
     "spec/ey_db_import_spec.rb",
     "spec/spec_helper.rb",
     "test/aww_yeah",
+    "test/chellocat.jpg",
     "test/most_recent_backup",
     "tmp/mock-aws-s3/bucket/abc123",
     "tmp/mock-aws-s3/bucket/backup_db"
