@@ -23,7 +23,6 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{This gem interacts with Amazon's S3 service to give the user the ability to backup their database and store it elsewhere in case S3 experiences an outage. This gem should allow the user to easily automate the process of grabbing the most recent database from S3.}
   gem.email = "brettchalupa@gmail.com"
   gem.authors = ["Brett Chalupa"]
-  gem.executable = ['ey_db_backup']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -49,7 +48,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "ey_db_import #{version}"
+  rdoc.title = "ey_db_backup #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

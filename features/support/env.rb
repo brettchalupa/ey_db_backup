@@ -8,7 +8,7 @@ rescue Bundler::BundlerError => e
 end
 
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'ey_db_import'
+require 'ey_db_backup'
 
 require 'rspec/expectations'
 

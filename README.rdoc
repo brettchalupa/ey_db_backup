@@ -1,13 +1,12 @@
-== Engine Yard Database Import
+== Engine Yard Database Backup
 
-Engine Yard Database Import is used to import the latest database backup from Amazon's S3 service. This backup can be stored locally or on another server. This backup utility is to make sure there is a recent backup of the database incase Amazon's S3 service goes down.
+Engine Yard Database Backup is used to backup the latest database backup from Amazon's S3 service. This backup can be stored locally or on another server. This backup utility is to make sure there is a recent backup of the database incase Amazon's S3 service goes down.
 
-== Configuring Engine Yard Databse Import
+== Configuring Engine Yard Databse Backup for Development
 
-1. Create a YAML file called config.yml
-2. Add the following fields:
+== Setting up and using the Engine Yard Database Backup gem
   
-== Contributing to ey_db_import
+== Contributing to ey_db_export
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
