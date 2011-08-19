@@ -29,7 +29,7 @@ class DatabaseExport < Thor
       #end
 
 
-      bucket_files.keep_if {|v| v.key.include? m}
+      bucket_files.keep_if {|v| v.key.include? "#{environment}.#{m}"}
 
       puts "-------"
 
