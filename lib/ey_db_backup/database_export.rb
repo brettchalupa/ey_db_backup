@@ -24,22 +24,14 @@ class DatabaseExport < Thor
 
       bucket_files = AWS::S3::Bucket.objects(bucket_name)
 
-      bucket_files.each do |x|
-        puts x.key
-      end
+      #bucket_files.each do |x|
+        #puts x.key
+      #end
 
 
       bucket_files.keep_if {|v| v.key.include? m}
 
       puts "-------"
-
-      bucket_files.each do |x|
-        puts x.key
-      end
-
-      bucket_files.each do |k|
-        puts k.key
-      end
 
       most_recent = bucket_files[0]
 
@@ -57,9 +49,10 @@ class DatabaseExport < Thor
       end
 
       counter = 0
-
+      
+      puts most_recent.key
       puts most_recent.about["content-length"]
-
+      
       open("#{export_path}#{environment}.#{m}", 'w') do |file|
           AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
             file.write chunk
