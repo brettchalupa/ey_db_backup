@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ey_db_backup}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brett Chalupa"]
-  s.date = %q{2011-08-17}
+  s.date = %q{2011-08-19}
   s.default_executable = %q{ey_db_backup}
   s.description = %q{This gem interacts with Amazon's S3 service to give the user the ability to backup their database and store it elsewhere in case S3 experiences an outage. This gem should allow the user to easily automate the process of grabbing the most recent database from S3.}
   s.email = %q{brettchalupa@gmail.com}
