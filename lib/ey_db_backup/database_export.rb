@@ -31,14 +31,16 @@ class DatabaseExport < Thor
 
     chunk_total = 0
 
+    puts "Backing up #{most_recent.key} to #{export_path}"
+    puts "Current transfer status:"
+
     open("#{export_path}#{most_recent.key}", 'w') do |file|
         AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
           file.write chunk
-          chunk_total += chunk.bytesize
-          #puts file.size
           print "#{(((file.size.to_f)/(most_recent.about["content-length"].to_f))*100.0).truncate}% "
-          #puts File.size("#{export_path}#{most_recent.key}")
         end
     end
+
+    puts "\nBackup complete"
   end
 end
