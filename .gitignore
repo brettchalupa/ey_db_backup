@@ -23,3 +23,4 @@ pkg
 # project specific
 config/config.yml
 config/*
+test/*
