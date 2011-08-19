@@ -43,7 +43,7 @@ class DatabaseExport < Thor
       puts "-------"
 
       bucket_files.each do |n|
-        if n.about["last-modified"] > most_recent.about["last-modified"]
+        if Time.parse(n.about["last-modified"]) > Time.parse(most_recent.about["last-modified"])
           most_recent = n
         end
       end
@@ -57,6 +57,8 @@ class DatabaseExport < Thor
 
       counter = 0
       
+      puts Time.parse(most_recent.about["last-modified"])
+      puts ""
       puts "File being backed up:"
       print most_recent.key
       print " "
