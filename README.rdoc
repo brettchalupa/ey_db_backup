@@ -1,6 +1,6 @@
 == Engine Yard Database Backup
 
-Engine Yard Database Backup is used to backup the latest database backup from Amazon's S3 service. 
+Engine Yard Database Backup is used to backup the latest database backup from Amazon's S3 service.
 This gem downloads the latest file in the bucket you specify in your AWS S3 account.
 This backup utility is to make sure there is a recent backup of the database incase Amazon's S3 service goes down and you need access to your data.
 
@@ -13,7 +13,7 @@ This backup utility is to make sure there is a recent backup of the database inc
     bucket_name: "put the bucket name here"
     export_path: "put the location you want to export the file to here (e.g. documents/db_exports/)"
 4. Simply run <tt>ey_db_backup run_export</tt> to download the latest file in the bucket you specified to the directory you specified.
-  
+
 == Configuring Engine Yard Databse Backup for Development
 
 1. Fork this project.
@@ -21,7 +21,7 @@ This backup utility is to make sure there is a recent backup of the database inc
 3. Code away!
 
 == Contributing to ey_db_export
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
