@@ -60,7 +60,7 @@ class DatabaseExport < Thor
 
       puts most_recent.about["content-length"]
 
-      open("#{export_path}#{most_recent.key}", 'w') do |file|
+      open("#{export_path}#{environment}.#{m}", 'w') do |file|
           AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
             file.write chunk
             counter = counter + 1
@@ -82,3 +82,4 @@ class DatabaseExport < Thor
 
   end
 end
+
