@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/brettchalupa/ey_db_backup"
   gem.license = "MIT"
   gem.summary = %Q{Gem interacts with Amazon's S3 service to import the latest database backup.}
-  gem.description = %Q{This gem interacts with Amazon's S3 service to give the user the ability to backup their database and store it elsewhere in case S3 experiences an outage. This gem should allow the user to easily automate the process of grabbing the most recent database from S3.}
+  gem.description = %Q{This gem interacts with Amazon's S3 service to give the user the ability to backup their Engine Yard databases and store them locally. This gem should allow the user to easily automate the process of grabbing the most recent database backup from S3. You can include as many databases in an environment as desired. To get started, check out the documentation.}
   gem.email = "brettchalupa@gmail.com"
   gem.authors = ["Brett Chalupa"]
   # dependencies defined in Gemfile

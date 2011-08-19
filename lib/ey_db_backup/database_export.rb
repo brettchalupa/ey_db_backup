@@ -17,30 +17,68 @@ class DatabaseExport < Thor
 
     bucket_name = aws_config.bucket_name
     export_path = aws_config.export_path
+    environment = aws_config.environment
+    databases = aws_config.databases
 
-    bucket_files = AWS::S3::Bucket.objects(bucket_name)
-    
+    databases.each do |m|
 
-    most_recent = bucket_files[0]
+      bucket_files = AWS::S3::Bucket.objects(bucket_name)
 
-    bucket_files.each do |n|
-      if n.about["last-modified"] > most_recent.about["last-modified"]
-        most_recent = n
+      bucket_files.each do |x|
+        puts x.key
       end
-    end
 
-    chunk_total = 0
 
-    puts "Backing up #{most_recent.key} to #{export_path}"
-    puts "Current transfer status:"
+      bucket_files.keep_if {|v| v.key.include? m}
 
-    open("#{export_path}#{most_recent.key}", 'w') do |file|
-        AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
-          file.write chunk
-          print "#{(((file.size.to_f)/(most_recent.about["content-length"].to_f))*100.0).truncate}% "
+      puts "-------"
+
+      bucket_files.each do |x|
+        puts x.key
+      end
+
+      bucket_files.each do |k|
+        puts k.key
+      end
+
+      most_recent = bucket_files[0]
+
+      bucket_files.each do |n|
+        if n.about["last-modified"] > most_recent.about["last-modified"]
+          most_recent = n
         end
+      end
+
+      puts "Backing up #{most_recent.key} to #{export_path}#{most_recent.key}"
+      puts "Current transfer status:"
+
+      if !FileTest::directory?("#{export_path}#{environment}.#{m}")
+        Dir::mkdir("#{export_path}#{environment}.#{m}")
+      end
+
+      counter = 0
+
+      puts most_recent.about["content-length"]
+
+      open("#{export_path}#{most_recent.key}", 'w') do |file|
+          AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
+            file.write chunk
+            counter = counter + 1
+            if counter == ((((most_recent.about["content-length"].to_f/10.0)/1048576)*100).truncate).to_i or ((((file.size.to_f)/(most_recent.about["content-length"].to_f))*100.0).truncate == 100)
+              print "#{(((file.size.to_f)/(most_recent.about["content-length"].to_f))*100.0).truncate}% "
+              counter = 0
+            end
+
+          end
+      end
+
+      puts "\nBackup of #{most_recent.key} complete"
+
+    end
+    
+    if databases.length > 1
+      puts "All backups complete"
     end
 
-    puts "\nBackup complete"
   end
 end
