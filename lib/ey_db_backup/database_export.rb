@@ -29,11 +29,15 @@ class DatabaseExport < Thor
       end
     end
 
+    chunk_total = 0
+
     open("#{export_path}#{most_recent.key}", 'w') do |file|
-        file.write(AWS::S3::S3Object.stream(most_recent.key, bucket_name))
+        AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
+          file.write chunk
+          chunk_total += chunk.bytesize
+          puts "#{((chunk_total)/(most_recent.about["content-length"].to_i))*100}%"
+          #puts File.size("#{export_path}#{most_recent.key}")
+        end
     end
   end
 end
-
-DatabaseExport.start
-
