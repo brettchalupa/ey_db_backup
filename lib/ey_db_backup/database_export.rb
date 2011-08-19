@@ -24,16 +24,23 @@ class DatabaseExport < Thor
 
       bucket_files = AWS::S3::Bucket.objects(bucket_name)
 
-      #bucket_files.each do |x|
-        #puts x.key
-      #end
+      
 
 
       bucket_files.keep_if {|v| v.key.include? "#{environment}.#{m}"}
 
-      puts "-------"
+      puts "+++++++"
+
+      bucket_files.each do |x|
+        print x.key
+        print " "
+        print x.about["last-modified"]
+        print "\n"
+      end
 
       most_recent = bucket_files[0]
+
+      puts "-------"
 
       bucket_files.each do |n|
         if n.about["last-modified"] > most_recent.about["last-modified"]
@@ -42,7 +49,7 @@ class DatabaseExport < Thor
       end
 
       puts "Backing up #{most_recent.key} to #{export_path}#{most_recent.key}"
-      puts "Current transfer status:"
+      
 
       if !FileTest::directory?("#{export_path}#{environment}.#{m}")
         Dir::mkdir("#{export_path}#{environment}.#{m}")
@@ -50,8 +57,16 @@ class DatabaseExport < Thor
 
       counter = 0
       
-      puts most_recent.key
-      puts most_recent.about["content-length"]
+      puts "File being backed up:"
+      print most_recent.key
+      print " "
+      print most_recent.about["last-modified"]
+      print " Size: "
+      print most_recent.about["content-length"]
+      print "\n"
+
+
+      puts "Current transfer status:"
       
       open("#{export_path}#{most_recent.key}", 'w') do |file|
           AWS::S3::S3Object.stream(most_recent.key, bucket_name) do |chunk|
