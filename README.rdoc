@@ -9,15 +9,18 @@ This backup utility is to make sure there is a recent backup of the database inc
 1. <tt>gem install ey_db_backup</tt>
 2. Create the directory <tt>config</tt> within the local directory you are running the gem in.
 3. Create a YAML file <tt>config.yml</tt> structured as below. <b>The database list items should start with a "-" not a "*", some sites markup translate "-" into "*". Be aware that if your YAML file database list entries start with "*" and not "-" if may not work.</b>
-    access_key_id: "put your access key id here"
-    secret_access_key: "put your secret access key here"
-    bucket_name: "put the bucket name here"
-    export_path: "put the location you want to export the file to here (e.g. documents/db_exports/)"
-    environment: "put which environment you want backed up in Engine Yard (e.g. Production)"
-    databases:
-      - "list all databases here (e.g. apple)"
-      - "(e.g. orange)"
 4. Simply run <tt>ey_db_backup run_export</tt> to download the latest file in the bucket you specified to the directory you specified.
+
+<code>
+access_key_id: "put your access key id here"
+secret_access_key: "put your secret access key here"
+bucket_name: "put the bucket name here"
+export_path: "put the location you want to export the file to here (e.g. documents/db_exports/)"
+environment: "put which environment you want backed up in Engine Yard (e.g. Production)"
+databases:
+  - "list all databases here (e.g. apple)"
+  - "(e.g. orange)"
+</code>
 
 == Configuring Engine Yard Databse Backup for Development
 
