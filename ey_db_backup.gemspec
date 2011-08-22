@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brett Chalupa"]
-  s.date = %q{2011-08-19}
+  s.date = %q{2011-08-22}
   s.default_executable = %q{ey_db_backup}
   s.description = %q{This gem interacts with Amazon's S3 service to give the user the ability to backup their Engine Yard databases and store them locally. This gem should allow the user to easily automate the process of grabbing the most recent database backup from S3. You can include as many databases in an environment as desired. To get started, check out the documentation.}
   s.email = %q{brettchalupa@gmail.com}
