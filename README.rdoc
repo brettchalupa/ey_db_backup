@@ -15,8 +15,8 @@ This backup utility is to make sure there is a recent backup of the database inc
     export_path: "put the location you want to export the file to here (e.g. documents/db_exports/)"
     environment: "put which environment you want backed up in Engine Yard (e.g. Production)"
     databases:
-      \- "list all databases here (e.g. apple)"
-      \- "(e.g. orange)"
+      - "list all databases here (e.g. apple)"
+      - "(e.g. orange)"
 4. Simply run <tt>ey_db_backup run_export</tt> to download the latest file in the bucket you specified to the directory you specified.
 
 == Configuring Engine Yard Databse Backup for Development
