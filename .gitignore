@@ -16,6 +16,7 @@ pkg
 
 
 .DS_Store
+*.DS_Store
 
 # For vim:
 *.swp
